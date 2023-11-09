@@ -1,8 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const routes = require('./routes'); // Importa las rutas
+const routes = require('./routes/usuario'); // Importa las rutas
 const app = express();
+
+//Configuraciones
+app.set('port', process.env.PORT || 3000);
+app.set('json spaces', 2)
 
 // Configuración del middleware
 app.use(cors());
@@ -12,6 +16,7 @@ app.use(morgan('dev'));
 // Rutas
 app.use('/', routes);
 
+
 // Manejo de errores
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -19,9 +24,8 @@ app.use((err, req, res, next) => {
 });
 
 // Iniciar el servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor backend iniciado en el puerto ${PORT}`);
+app.listen(app.get('port'),()=>{
+    console.log(`Server listening on port ${app.get('port')}`);
 });
 
 
