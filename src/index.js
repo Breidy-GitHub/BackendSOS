@@ -1,7 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const routes = require('./routes/usuario'); // Importa las rutas
+const usuario = require('./routes/usuario');
+const notificacion = require('./routes/notificaciones');
+const historial = require('./routes/historial');
+const datosUsuario = require('./routes/datosUsuarios');
+const datosMedicos = require('./routes/datosMedicos');
+const contactoEmergencia = require('./routes/contactosEmergencia');
+const alertas = require('./routes/alertas');
+const alergias = require('./routes/alergias');
 const app = express();
 
 //Configuraciones
@@ -14,7 +21,15 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Rutas
-app.use('/', routes);
+app.use('/', usuario);
+app.use('/', notificacion);
+app.use('/', historial);
+app.use('/', datosUsuario);
+app.use('/', datosMedicos);
+app.use('/', contactoEmergencia);
+app.use('/', alertas);
+app.use('/', alergias);
+
 
 
 // Manejo de errores
